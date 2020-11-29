@@ -41,7 +41,7 @@ export class AtendimentoService {
       )
   }
   updateAtendimento(atendimento: Atendimento): Observable<Atendimento> {
-    return this.httpClient.put<Atendimento>(this.api + '/' + atendimento.id, JSON.stringify(atendimento), this.httpOptions)
+    return this.httpClient.put<Atendimento>(this.api, JSON.stringify(atendimento), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

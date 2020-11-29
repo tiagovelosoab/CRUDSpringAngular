@@ -41,12 +41,14 @@ export class AtendimentoControlComponent implements OnInit {
     if (this.atendimento.id !== undefined) {
       this.atendimentoService.updateAtendimento(this.atendimento).subscribe(() => {
         this.cleanForm(form);
+        this.getAtendimentos();
         this.control=1;
       });
     } else {
       this.atendimentoService.saveAtendimento(this.atendimento).subscribe(() => {
-        this.control=1;
         this.cleanForm(form);
+        this.getAtendimentos();
+        this.control=1;
       });
     }
   }
@@ -60,5 +62,6 @@ export class AtendimentoControlComponent implements OnInit {
   retornar(form: NgForm){
     this.control=1;
     this.cleanForm(form);
+    this.getAtendimentos;
   }
 }
