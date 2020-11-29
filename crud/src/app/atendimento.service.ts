@@ -11,7 +11,7 @@ import { Atendimento } from './atendimento';
   providedIn: 'root'
 })
 export class AtendimentoService {
-  private resource='atendimento';
+  private resource='api/atendimento';
   api=environment.urlBase+'/'+this.resource;
 
   constructor(private httpClient:HttpClient) { }
