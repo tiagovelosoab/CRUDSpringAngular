@@ -1,0 +1,110 @@
+<div *ngIf="control==1">
+    <br>
+    <div class="panel panel-primary text-center ">
+        <div class="panel-heading">
+          <h2>Lista de atendimentos</h2>
+        </div>
+       <br>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>Coordenador</th>
+                <th>Assunto</th>
+                <th>Descrição</th>
+                <th>Data</th>
+               <th>Ações</th>
+              </tr>
+            </thead>
+           <tbody>
+             <tr *ngFor="let i of atendimentos">
+               <td [innerHTML]="i.coordenador"></td>
+               <td [innerHTML]="i.assunto"></td>
+               <td [innerHTML]="i.descricao"></td>
+               <td [innerHTML]="i.data"></td>
+               <td><button class="btn btn-danger" (click)="deleteAtendimento(i)">Excluir</button>
+                   <button  class="btn btn-info" style="margin-left: 10px" (click)="editAtendimento(i)">Atualizar</button>
+               </td>
+             </tr>
+            </tbody>
+         </table>
+       </div>
+       <br>
+       <button type="button" class="btn btn-success" (click)="inserir()">Inserir novo atendimento</button>
+     </div>
+    </div>
+
+
+    <div *ngIf="control==2">
+        <form class="text-center border border-light p-5" (ngSubmit)='saveAtendimento(f)' #f="ngForm">
+          <p class="h3 mb-4">Inserção de atendimentos</p>
+          <div class="col-sm-6 offset-sm-3 text-center">
+              <input class="form-control"  type="text" [(ngModel)]="atendimento.coordenador" id="coordenador" name="coordenador"  #coordenador="ngModel" placeholder="Coordenador" required minlength=3 maxlength=50/>    
+              <small class="form-text text-muted mb-3">Campo requerido,mínimo de 3 caracteres e máximo de 50 caracteres</small>
+          </div>
+
+          <div class="col-sm-6 offset-sm-3 text-center">
+             <input class="form-control"  type="text" [(ngModel)]="atendimento.assunto" id="assunto" name="assunto" #assunto="ngModel" placeholder="Assunto" required minlength=4 maxlength=40 />
+             <small class="form-text text-muted mb-3">Campo requerido,mínimo de 4 caracteres e máximo de 40 caracteres</small>
+          </div>
+
+          <div class="col-sm-6 offset-sm-3 text-center">
+            <textarea class="form-control"  type="text" [(ngModel)]="atendimento.descricao" id="descricao" name="descricao" #descricao="ngModel" placeholder="Descrição" maxlength=100></textarea>
+            <small class="form-text text-muted mb-3">Máximo de 100 caracteres</small>    
+        </div>
+
+          <div class="col-sm-4 offset-sm-4 text-center">
+              <input class="form-control"  type="text" [(ngModel)]="atendimento.data" id="data" name="data" #data="ngModel" placeholder="Data" required  onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"/>
+              <small class="form-text text-muted mb-3">Campo requerido</small>
+          </div>
+
+         
+          <br> 
+          <div *ngIf="f.form.invalid">
+            <button type="submit" class="btn btn-primary" [disabled]="f.form.invalid">Enviar</button>
+            </div>
+            <div *ngIf="f.form.valid">
+            <button type="submit" class="btn btn-success" [disabled]="f.form.invalid">Enviar</button>
+            </div>
+          <br>
+          <button type="button" class="btn btn-link" (click)="retornar(f)">Voltar a lista de atendimentos</button>
+      </form>
+      
+      </div>
+
+      <div *ngIf="control==3">
+        <form class="text-center border border-light p-5" (ngSubmit)='saveAtendimento(f)' #f="ngForm">
+          <p class="h3 mb-4">Atualização de atendimentos</p>
+          <div class="col-sm-6 offset-sm-3 text-center">
+              <input class="form-control"  type="text" [(ngModel)]="atendimento.coordenador" id="coordenador" name="coordenador"  #coordenador="ngModel" placeholder="Coordenador" required minlength=3 maxlength=50/>    
+              <small class="form-text text-muted mb-3">Campo requerido,mínimo de 3 caracteres e máximo de 50 caracteres</small>
+          </div>
+
+          <div class="col-sm-6 offset-sm-3 text-center">
+             <input class="form-control"  type="text" [(ngModel)]="atendimento.assunto" id="assunto" name="assunto" #assunto="ngModel" placeholder="Assunto" required minlength=4 maxlength=40 />
+             <small class="form-text text-muted mb-3">Campo requerido,mínimo de 4 caracteres e máximo de 40 caracteres</small>
+          </div>
+
+          <div class="col-sm-6 offset-sm-3 text-center">
+            <textarea class="form-control"  type="text" [(ngModel)]="atendimento.descricao" id="descricao" name="descricao" #descricao="ngModel" placeholder="Descrição" maxlength=100></textarea>
+            <small class="form-text text-muted mb-3">Máximo de 100 caracteres</small>    
+        </div>
+
+          <div class="col-sm-4 offset-sm-4 text-center">
+              <input class="form-control"  type="text" [(ngModel)]="atendimento.data" id="data" name="data" #data="ngModel" placeholder="Data" required  onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"/>
+              <small class="form-text text-muted mb-3">Campo requerido</small>
+          </div>
+
+         
+          <br> 
+          <div *ngIf="f.form.invalid">
+            <button type="submit" class="btn btn-primary" [disabled]="f.form.invalid">Atualizar atendimento</button>
+            </div>
+            <div *ngIf="f.form.valid">
+            <button type="submit" class="btn btn-success" [disabled]="f.form.invalid">Atualizar atendimento</button>
+            </div>
+          <br>
+          <button type="button" class="btn btn-link" (click)="retornar(f)">Voltar a lista de atendimentos</button>
+      </form>
+      
+      </div>
